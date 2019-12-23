@@ -254,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `otus`.`currencies` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT 'ID валюты',
   `name` VARCHAR(45) NOT NULL COMMENT 'Наименование',
   `designation` VARCHAR(3) NOT NULL COMMENT 'Обозначение',
-  `weight coefficient` FLOAT UNSIGNED NULL COMMENT 'Весовой коэффициент (для конвертации курса)',
+  `weight_coefficient` FLOAT UNSIGNED NULL COMMENT 'Весовой коэффициент (для конвертации курса)',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `designation_UNIQUE` (`designation` ASC),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
@@ -376,6 +376,26 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-CREATE SCHEMA IF NOT EXISTS sbtest;
-CREATE USER sbtest@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON sbtest.* to sbtest@'%';
+-- Test data
+
+INSERT INTO countries (code, name) VALUES ('RU', 'Россия'), ('PL', 'Польша'), ('TK', 'Токелау');
+
+INSERT INTO cities (name, country_id) VALUES ('Москва', 1), ('Санкт-Петербург', 1), ('Варшрава', 2);
+
+INSERT INTO streets (name, city_id, postal_code) VALUES ('1-ая Московская', 1, 123456), ('2-ая Московская', 2, 123457), ('3-я Московская', 1, 123458), ('Первая', 2, 223458), ('Вторая', 2, 223459);
+
+INSERT INTO building_types (name) VALUES ('Частный дом'), ('Многоквартирный дом');
+
+INSERT INTO buildings (street_id, number, building_type_ID) VALUES (1, '1a', 1), (2, '1/2', 1), (2, '1/3', 2), (3, 1, 1), (3, 2, 2), (3, 3, 2);
+
+INSERT INTO currencies (name, designation, weight_coefficient) VALUES ('Российский рубль', 'RUR', 1), ('Американский доллар', 'USD', 65);
+
+INSERT INTO manufacturers (name, building_id) VALUES ('Apple', 1), ('Samsung', 2), ('НПО Электроника', 3);
+
+INSERT INTO categories (name, parent_id) VALUES ('Электроника', null), ('Бытовая техника', null), ('Смартфоны', 1), ('Телевизоры', 1);
+
+INSERT INTO products (name, category_id, manufacturer_id, description) VALUES ('Смартфон 1', 3, 1, 'Отличный смартфон 1'), ('Смартфон 2', 3, 2, 'Отличный смартфон 2'), ('Смартфон 3', 3, 1, 'Отличный смартфон 3');
+
+INSERT INTO prices (product_id, date, price, currency_id) VALUES (1, NOW(), 100, 1), (2, NOW(), 200, 1),  (3, NOW(), 10, 2);
+
+
