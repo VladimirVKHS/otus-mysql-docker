@@ -32,7 +32,7 @@ ENGINE = InnoDB;
 -- Table `otus`.`genders`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `otus`.`genders` (
-  `id` INT NOT NULL COMMENT 'ID пола',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT 'ID пола',
   `name` VARCHAR(45) NOT NULL COMMENT 'Наименование',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
@@ -398,4 +398,12 @@ INSERT INTO products (name, category_id, manufacturer_id, description) VALUES ('
 
 INSERT INTO prices (product_id, date, price, currency_id) VALUES (1, NOW(), 100, 1), (2, NOW(), 200, 1),  (3, NOW(), 10, 2);
 
+INSERT INTO genders (name) VALUES ('мужской'), ('женский');
 
+INSERT INTO marital_statuses (name) VALUES ('женат'), ('за мужем'), ('не женат'), ('не замужем');
+
+INSERT INTO titles (name) VALUES ('Господин'), ('Госпожа'), ('Товарищ');
+
+INSERT INTO languages(code, name) VALUES ('ru', 'Русский'), ('en', 'Английский');
+
+INSERT INTO order_statuses (name) VALUES ('Создан'), ('Оплачен'), ('Отменен'), ('Завершён');
