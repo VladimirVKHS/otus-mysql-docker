@@ -43,6 +43,11 @@
             manufacturer_id = FLOOR(1 + RAND() * 2),
             properties = (JSON_OBJECT('type', @type, 'tags', @tags, 'published', @published, @option1name, @option1value));
             
+   Результат:
+   
+        Query OK, 104 rows affected (0.04 sec)
+        Records: 104  Deleted: 0  Skipped: 0  Warnings: 0
+   
    
 ## Загрузка данных (mysqlimport)
 
@@ -55,6 +60,11 @@
    
    
        mysqlimport --ignore-lines=1 --fields-terminated-by=, --columns=name,description,category_id,manufacturer_id -u root -p12345 otus /csv/products.csv --ignore
+
+
+   Результат:
+   
+        otus.products: Records: 2812  Deleted: 0  Skipped: 1679  Warnings: 7570
 
 ## Загрузка данных (FIFO)
 
