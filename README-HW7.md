@@ -60,7 +60,7 @@
    
    
    
-        mysqlimport --ignore-lines=1 --fields-terminated-by=, --columns=name,description,category_id,manufacturer_id -u root -p12345 otus /csv/products.csv --ignore
+            mysqlimport --ignore-lines=1 --fields-terminated-by=, --columns=name,description,category_id,manufacturer_id -u root -p12345 otus /csv/products.csv --ignore
 
 
    Результат:
